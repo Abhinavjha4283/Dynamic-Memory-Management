@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { LayoutDashboard, BookOpen, GraduationCap } from 'lucide-react';
 import { simulatorConfigs } from '../utils/simulatorConfig';
 import ThemeSelector, { THEMES } from '../components/ThemeSelector';
 import HelpModal from '../components/HelpModal';
@@ -52,14 +53,17 @@ export default function AppLayout() {
   }, []);
 
   const navItems = [
-    { path: '/', label: 'Overview', icon: '📊', color: '#8b949e', end: true },
-    ...simulatorConfigs.map((sim) => ({
-      path: sim.path,
-      label: sim.title,
-      icon: sim.icon,
-      color: sim.color,
-      end: false,
-    })),
+    { path: '/dashboard', label: 'Overview', icon: <LayoutDashboard size={18} />, color: '#8b949e', end: true },
+    ...simulatorConfigs.map((sim) => {
+      const Icon = sim.icon;
+      return {
+        path: sim.path,
+        label: sim.title,
+        icon: <Icon size={18} />,
+        color: sim.color,
+        end: false,
+      };
+    }),
   ];
 
   return (
@@ -137,7 +141,7 @@ export default function AppLayout() {
               rel="noopener noreferrer"
               className="nav-link"
             >
-              <span className="nav-icon">📚</span>
+              <span className="nav-icon"><BookOpen size={18} /></span>
               <span className="nav-label">Documentation</span>
             </a>
             <a
@@ -146,7 +150,7 @@ export default function AppLayout() {
               rel="noopener noreferrer"
               className="nav-link"
             >
-              <span className="nav-icon">🎓</span>
+              <span className="nav-icon"><GraduationCap size={18} /></span>
               <span className="nav-label">Learn OS (OSTEP)</span>
             </a>
           </div>

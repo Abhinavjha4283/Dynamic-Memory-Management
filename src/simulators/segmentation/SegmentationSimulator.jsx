@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Puzzle } from 'lucide-react';
 import SegmentTable from './components/SegmentTable';
 import MemoryLayout from './components/MemoryLayout';
 import BaseLimit from './components/BaseLimit';
@@ -43,7 +44,9 @@ export default function SegmentationSimulator() {
   return (
     <div className="placeholder-simulator">
       <motion.header className="simulator-hero" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-        <div className="simulator-hero-icon" style={{ background: 'linear-gradient(135deg, #39c5cf, #1a5a5f)' }}>🧩</div>
+        <div className="simulator-hero-icon flex items-center justify-center text-white" style={{ background: 'linear-gradient(135deg, #39c5cf, #1a5a5f)' }}>
+          <Puzzle size={28} />
+        </div>
         <div>
           <h1 className="simulator-hero-title">Segmentation</h1>
           <p className="simulator-hero-sub">Segment-based Memory Management</p>

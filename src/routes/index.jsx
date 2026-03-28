@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, useNavigate } from 'react-router-dom';
 import AppLayout from '../layouts/AppLayout';
 import Dashboard from '../pages/Dashboard';
 import PageReplacementSimulator from '../simulators/pageReplacement/PageReplacementSimulator';
@@ -7,38 +7,47 @@ import SegmentationSimulator from '../simulators/segmentation/SegmentationSimula
 import VirtualMemorySimulator from '../simulators/virtualMemory/VirtualMemorySimulator';
 import PartitioningSimulator from '../simulators/partitioning/PartitioningSimulator';
 import ThrashingSimulator from '../simulators/thrashing/ThrashingSimulator';
+import IntroPage from '../components/IntroPage';
+
+function IntroRoute() {
+  const navigate = useNavigate();
+  return <IntroPage onStart={() => navigate('/dashboard')} />;
+}
 
 export const router = createBrowserRouter([
   {
     path: '/',
+    element: <IntroRoute />,
+  },
+  {
     element: <AppLayout />,
     children: [
       {
-        index: true,
+        path: '/dashboard',
         element: <Dashboard />,
       },
       {
-        path: 'page-replacement',
+        path: '/page-replacement',
         element: <PageReplacementSimulator />,
       },
       {
-        path: 'paging',
+        path: '/paging',
         element: <PagingSimulator />,
       },
       {
-        path: 'segmentation',
+        path: '/segmentation',
         element: <SegmentationSimulator />,
       },
       {
-        path: 'virtual-memory',
+        path: '/virtual-memory',
         element: <VirtualMemorySimulator />,
       },
       {
-        path: 'partitioning',
+        path: '/partitioning',
         element: <PartitioningSimulator />,
       },
       {
-        path: 'thrashing',
+        path: '/thrashing',
         element: <ThrashingSimulator />,
       },
     ],

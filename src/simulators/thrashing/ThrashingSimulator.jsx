@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { AlertTriangle, Zap } from 'lucide-react';
 import WorkingSetMonitor from './components/WorkingSetMonitor';
 import PageFaultRateChart from './components/PageFaultRateChart';
 import ProcessTimeline from './components/ProcessTimeline';
@@ -21,7 +22,9 @@ export default function ThrashingSimulator() {
   return (
     <div className="placeholder-simulator">
       <motion.header className="simulator-hero" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-        <div className="simulator-hero-icon" style={{ background: isThrashing ? 'linear-gradient(135deg, #f85149, #5a1a18)' : 'linear-gradient(135deg, #3fb950, #1a4a22)' }}>{isThrashing ? '⚠️' : '⚡'}</div>
+        <div className="simulator-hero-icon flex items-center justify-center text-white" style={{ background: isThrashing ? 'linear-gradient(135deg, #f85149, #5a1a18)' : 'linear-gradient(135deg, #3fb950, #1a4a22)' }}>
+          {isThrashing ? <AlertTriangle size={28} /> : <Zap size={28} />}
+        </div>
         <div>
           <h1 className="simulator-hero-title">Thrashing Visualization</h1>
           <p className="simulator-hero-sub">Working Set Analysis &amp; CPU Utilization</p>

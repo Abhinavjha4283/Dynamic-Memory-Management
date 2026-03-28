@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Layers } from 'lucide-react';
 import MemoryPartitions from './components/MemoryPartitions';
 import ProcessQueue from './components/ProcessQueue';
 import AllocationVisualizer from './components/AllocationVisualizer';
@@ -46,7 +47,9 @@ export default function PartitioningSimulator() {
   return (
     <div className="placeholder-simulator">
       <motion.header className="simulator-hero" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-        <div className="simulator-hero-icon" style={{ background: 'linear-gradient(135deg, #d29922, #5a3e0a)' }}>📦</div>
+        <div className="simulator-hero-icon flex items-center justify-center text-white" style={{ background: 'linear-gradient(135deg, #d29922, #5a3e0a)' }}>
+          <Layers size={28} />
+        </div>
         <div>
           <h1 className="simulator-hero-title">Dynamic Partitioning</h1>
           <p className="simulator-hero-sub">First Fit, Best Fit, Worst Fit &amp; Next Fit</p>

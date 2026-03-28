@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { HardDrive } from 'lucide-react';
 import TLBSimulation from './components/TLBSimulation';
 import MultiLevelPageTable from './components/MultiLevelPageTable';
 import SwapSpace from './components/SwapSpace';
@@ -43,7 +44,9 @@ export default function VirtualMemorySimulator() {
   return (
     <div className="placeholder-simulator">
       <motion.header className="simulator-hero" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-        <div className="simulator-hero-icon" style={{ background: 'linear-gradient(135deg, #3fb950, #1a4a22)' }}>💾</div>
+        <div className="simulator-hero-icon flex items-center justify-center text-white" style={{ background: 'linear-gradient(135deg, #3fb950, #1a4a22)' }}>
+          <HardDrive size={28} />
+        </div>
         <div>
           <h1 className="simulator-hero-title">Virtual Memory</h1>
           <p className="simulator-hero-sub">TLB, Multi-level Page Tables &amp; Demand Paging</p>

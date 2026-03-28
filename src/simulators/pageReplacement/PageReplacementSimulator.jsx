@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Flame } from 'lucide-react';
 import FrameGrid from './components/FrameGrid';
 import ReferenceTimeline from './components/ReferenceTimeline';
 import ControlPanel from './components/ControlPanel';
@@ -168,7 +169,9 @@ export default function PageReplacementSimulator() {
             boxShadow: '0 0 24px var(--hit-glow)',
           }}
         >
-          🔥 {sim.streakCount}× HIT STREAK!
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <Flame size={16} fill="currentColor" /> {sim.streakCount}× HIT STREAK!
+          </div>
         </motion.div>
       )}
     </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { FileText } from 'lucide-react';
 import LogicalMemory from './components/LogicalMemory';
 import PhysicalMemory from './components/PhysicalMemory';
 import PageTableView from './components/PageTableView';
@@ -43,7 +44,9 @@ export default function PagingSimulator() {
   return (
     <div className="placeholder-simulator">
       <motion.header className="simulator-hero" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-        <div className="simulator-hero-icon" style={{ background: 'linear-gradient(135deg, #a371f7, #4a2b8a)' }}>📄</div>
+        <div className="simulator-hero-icon flex items-center justify-center text-white" style={{ background: 'linear-gradient(135deg, #a371f7, #4a2b8a)' }}>
+          <FileText size={28} />
+        </div>
         <div>
           <h1 className="simulator-hero-title">Paging</h1>
           <p className="simulator-hero-sub">Logical to Physical Address Translation</p>
