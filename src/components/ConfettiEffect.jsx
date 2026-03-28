@@ -51,10 +51,15 @@ export default function ConfettiEffect() {
   );
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 200 }}
+    >
       {particles.map((p) => (
         <Particle key={p.id} x={p.x} color={p.color} delay={p.delay} />
       ))}
-    </>
+    </motion.div>
   );
 }
