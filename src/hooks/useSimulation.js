@@ -23,13 +23,15 @@ export function useSimulation({
   const [speed, setSpeed] = useState(SPEED_LIMITS.DEFAULT);
   const timerRef = useRef(null);
 
-  // FIX BUG-8: Store callbacks in refs to prevent re-creation of stepForward on every render
+  // Store callbacks in refs to prevent re-creation of stepForward on every render
   const onStepRef = useRef(onStep);
   const onResetRef = useRef(onReset);
   const onCompleteRef = useRef(onComplete);
-  onStepRef.current = onStep;
-  onResetRef.current = onReset;
-  onCompleteRef.current = onComplete;
+  useEffect(() => {
+    onStepRef.current = onStep;
+    onResetRef.current = onReset;
+    onCompleteRef.current = onComplete;
+  });
 
   const state = isLoaded
     ? currentStep >= totalSteps && totalSteps > 0
@@ -45,15 +47,17 @@ export function useSimulation({
   const progress = totalSteps > 0 ? (currentStep / totalSteps) * 100 : 0;
 
   const stepForward = useCallback(() => {
-    if (currentStep >= totalSteps) return;
-    const next = currentStep + 1;
-    onStepRef.current(next);
-    setCurrentStep(next);
-    if (next >= totalSteps) {
-      setIsPlaying(false);
-      onCompleteRef.current();
-    }
-  }, [currentStep, totalSteps]);
+    setCurrentStep((prev) => {
+      if (prev >= totalSteps) return prev;
+      const next = prev + 1;
+      onStepRef.current(next);
+      if (next >= totalSteps) {
+        setIsPlaying(false);
+        onCompleteRef.current();
+      }
+      return next;
+    });
+  }, [totalSteps]);
 
   // FIX BUG-5: Guard inside functional updater to avoid stale closure
   const stepBackward = useCallback(() => {

@@ -22,6 +22,10 @@ export function usePageReplacement() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [speed, setSpeed] = useState(800);
 
+  // FIX: track currentStep in a ref to avoid stale closures in callbacks
+  const currentStepRef = useRef(currentStep);
+  useEffect(() => { currentStepRef.current = currentStep; }, [currentStep]);
+
   const [allResults, setAllResults] = useState(null);
   const [eventLog, setEventLog] = useState([]);
   const [animatingFrames, setAnimatingFrames] = useState({});
@@ -288,11 +292,12 @@ export function usePageReplacement() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Step forward — FIX BUG-2: read TLB from ref, not stale closure
+  // Step forward — FIX BUG-2: read TLB from ref, and currentStep from ref to avoid stale closures
   const stepForward = useCallback(() => {
-    if (!currentResults || currentStep >= referenceString.length) return;
+    const rawStep = currentStepRef.current;
+    if (!currentResults || rawStep >= referenceString.length) return;
 
-    const newStep = currentStep + 1;
+    const newStep = rawStep + 1;
     const stepData = currentResults.steps[newStep - 1];
 
     // TLB update using ref for fresh state
@@ -365,7 +370,7 @@ export function usePageReplacement() {
     }
 
     setCurrentStep(newStep);
-  }, [currentResults, currentStep, referenceString, updateTlb]);
+  }, [currentResults, referenceString, updateTlb]);
 
   // Step backward — uses rebuildStateToStep for consistency
   const stepBackward = useCallback(() => {

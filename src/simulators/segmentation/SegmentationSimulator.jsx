@@ -12,7 +12,7 @@ export default function SegmentationSimulator() {
 
   // Keyboard shortcuts
   const simRef = useRef(sim);
-  simRef.current = sim;
+  useEffect(() => { simRef.current = sim; });
 
   useEffect(() => {
     const handleKeyDown = (e) => {

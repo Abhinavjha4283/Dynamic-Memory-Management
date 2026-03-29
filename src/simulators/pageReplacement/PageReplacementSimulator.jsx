@@ -12,9 +12,9 @@ import { usePageReplacement } from './hooks/usePageReplacement';
 export default function PageReplacementSimulator() {
   const sim = usePageReplacement();
 
-  // FIX BUG-9: Store sim in a ref to avoid re-registering handler every render
+  // Store sim in a ref to avoid re-registering handler every render
   const simRef = useRef(sim);
-  simRef.current = sim;
+  useEffect(() => { simRef.current = sim; });
 
   useEffect(() => {
     const handleKeyDown = (e) => {
