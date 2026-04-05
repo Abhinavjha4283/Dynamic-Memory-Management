@@ -252,13 +252,9 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Webpage
 
-**Thunder**
-
-- GitHub: [https://github.com/yourusername](https://github.com/yourusername)
-- LinkedIn: [https://linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
-
+(https://dynamic-memory-management.vercel.app/)
 ---
 
-> Built with 🧠 for CSE316 Operating Systems — because memory management deserves better than textbook diagrams.
+> Built with 🧠 for Operating Systems — because memory management deserves better than textbook diagrams.
