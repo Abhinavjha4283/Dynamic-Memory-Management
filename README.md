@@ -7,7 +7,7 @@
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite)
 ![Three.js](https://img.shields.io/badge/Three.js-r128-black?logo=three.js)
 
-> An interactive, cinematic OS education platform that makes memory management **visible, intuitive, and beautiful** — built for CSE316 Operating Systems coursework.
+> An interactive, cinematic OS education platform that makes memory management **visible, intuitive, and beautiful** — built for Operating Systems coursework.
 
 ---
 
